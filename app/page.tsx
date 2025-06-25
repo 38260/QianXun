@@ -71,12 +71,24 @@ export default function Page() {
 
     return (
         <div
-            className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white"
+            className="min-h-screen bg-gradient-to-br from-[#fffefb] via-[#f5f4f1] to-[#d4eaf7] text-[#1d1c1c]"
             data-oid="p.1xrf0"
+            style={{
+                '--primary-100': '#d4eaf7',
+                '--primary-200': '#b6ccd8',
+                '--primary-300': '#3b3c3d',
+                '--accent-100': '#71c4ef',
+                '--accent-200': '#00668c',
+                '--text-100': '#1d1c1c',
+                '--text-200': '#313d44',
+                '--bg-100': '#fffefb',
+                '--bg-200': '#f5f4f1',
+                '--bg-300': '#cccbc8',
+            }}
         >
             {/* 导航栏 */}
             <nav
-                className="p-6 backdrop-blur-sm bg-white/10 border-b border-white/20"
+                className="p-6 backdrop-blur-sm bg-[#f5f4f1]/80 border-b border-[#cccbc8]/50"
                 data-oid="eqew-7p"
             >
                 <div
@@ -84,7 +96,7 @@ export default function Page() {
                     data-oid="3aih0k:"
                 >
                     <div
-                        className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                        className="text-2xl font-bold bg-gradient-to-r from-[#00668c] to-[#71c4ef] bg-clip-text text-transparent"
                         data-oid="mm6d9_u"
                     >
                         AI创作助手
@@ -92,21 +104,21 @@ export default function Page() {
                     <div className="flex space-x-6" data-oid="hg:p8w0">
                         <button
                             onClick={() => setCurrentView('home')}
-                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'home' ? 'bg-white/20' : 'hover:bg-white/10'}`}
+                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'home' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
                             data-oid="v2yn9sn"
                         >
                             主页
                         </button>
                         <button
                             onClick={() => setCurrentView('profile')}
-                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'profile' ? 'bg-white/20' : 'hover:bg-white/10'}`}
+                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'profile' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
                             data-oid="t2dm9w2"
                         >
                             用户画像
                         </button>
                         <button
                             onClick={() => setCurrentView('analysis')}
-                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'analysis' ? 'bg-white/20' : 'hover:bg-white/10'}`}
+                            className={`px-4 py-2 rounded-lg transition-all ${currentView === 'analysis' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
                             data-oid="db_327u"
                         >
                             AI分析
@@ -121,12 +133,12 @@ export default function Page() {
                     <div className="space-y-8" data-oid="s:9hfo5">
                         <div className="text-center py-12" data-oid=":bd:9-q">
                             <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
                                 data-oid="ml.je.8"
                             >
                                 全部热点展示
                             </h1>
-                            <p className="text-xl text-gray-300" data-oid="wa2byw7">
+                            <p className="text-xl text-[#313d44]" data-oid="wa2byw7">
                                 发现当下最热门的创作话题
                             </p>
                         </div>
@@ -138,7 +150,7 @@ export default function Page() {
                             {hotTopics.map((topic) => (
                                 <div
                                     key={topic.id}
-                                    className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all hover:scale-105"
+                                    className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-6 border border-[#cccbc8]/30 hover:bg-[#d4eaf7]/50 transition-all hover:scale-105"
                                     data-oid="2s2z3ig"
                                 >
                                     <div
@@ -146,7 +158,7 @@ export default function Page() {
                                         data-oid="w1guc7l"
                                     >
                                         <span
-                                            className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-sm font-medium"
+                                            className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white"
                                             data-oid="-ptfr9i"
                                         >
                                             {topic.category}
@@ -156,26 +168,29 @@ export default function Page() {
                                             data-oid="91zdql2"
                                         >
                                             <div
-                                                className="w-2 h-2 bg-red-500 rounded-full animate-pulse"
+                                                className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"
                                                 data-oid="uvtjh0p"
                                             ></div>
                                             <span
-                                                className="text-sm text-gray-300"
+                                                className="text-sm text-[#313d44]"
                                                 data-oid="wng099r"
                                             >
                                                 {topic.heat}%
                                             </span>
                                         </div>
                                     </div>
-                                    <h3 className="text-lg font-semibold mb-2" data-oid=".r30jeo">
+                                    <h3
+                                        className="text-lg font-semibold mb-2 text-[#1d1c1c]"
+                                        data-oid=".r30jeo"
+                                    >
                                         {topic.title}
                                     </h3>
                                     <div
-                                        className="w-full bg-gray-700 rounded-full h-2"
+                                        className="w-full bg-[#cccbc8] rounded-full h-2"
                                         data-oid="0fw1bqf"
                                     >
                                         <div
-                                            className="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000"
+                                            className="bg-gradient-to-r from-[#71c4ef] to-[#00668c] h-2 rounded-full transition-all duration-1000"
                                             style={{ width: `${topic.heat}%` }}
                                             data-oid="vy:ma_k"
                                         ></div>
@@ -191,23 +206,23 @@ export default function Page() {
                     <div className="space-y-8" data-oid="0j9my.v">
                         <div className="text-center py-12" data-oid="xg1mwee">
                             <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
                                 data-oid="plpziv_"
                             >
                                 用户画像构建
                             </h1>
-                            <p className="text-xl text-gray-300" data-oid="rtmce8o">
+                            <p className="text-xl text-[#313d44]" data-oid="rtmce8o">
                                 选择标签，构建专属创作画像
                             </p>
                         </div>
 
                         <div
-                            className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20"
+                            className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30"
                             data-oid="t0m2l6s"
                         >
                             <div className="mb-6" data-oid="m4bihee">
                                 <label
-                                    className="block text-lg font-medium mb-3"
+                                    className="block text-lg font-medium mb-3 text-[#1d1c1c]"
                                     data-oid="3zrmad8"
                                 >
                                     输入您的描述
@@ -217,14 +232,14 @@ export default function Page() {
                                     value={userInput}
                                     onChange={(e) => setUserInput(e.target.value)}
                                     placeholder="描述您的兴趣、职业或创作方向..."
-                                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400"
+                                    className="w-full px-4 py-3 bg-[#fffefb] border border-[#cccbc8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#71c4ef] text-[#1d1c1c] placeholder-[#313d44]"
                                     data-oid="ryo:uf1"
                                 />
                             </div>
 
                             <div className="mb-6" data-oid="4ngi_qi">
                                 <label
-                                    className="block text-lg font-medium mb-3"
+                                    className="block text-lg font-medium mb-3 text-[#1d1c1c]"
                                     data-oid="lilvan0"
                                 >
                                     选择标签
@@ -236,8 +251,8 @@ export default function Page() {
                                             onClick={() => toggleTag(tag)}
                                             className={`px-4 py-2 rounded-full border-2 transition-all transform hover:scale-105 ${
                                                 selectedTags.includes(tag)
-                                                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 border-transparent text-white shadow-lg'
-                                                    : 'border-white/30 hover:border-cyan-400 hover:bg-white/10'
+                                                    ? 'bg-gradient-to-r from-[#71c4ef] to-[#00668c] border-transparent text-white shadow-lg'
+                                                    : 'border-[#cccbc8] hover:border-[#71c4ef] hover:bg-[#d4eaf7]/30 text-[#313d44]'
                                             }`}
                                             data-oid="t.i52-."
                                         >
@@ -249,17 +264,20 @@ export default function Page() {
 
                             {selectedTags.length > 0 && (
                                 <div
-                                    className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg p-4 border border-cyan-500/30"
+                                    className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-lg p-4 border border-[#71c4ef]/30"
                                     data-oid="0c17-uu"
                                 >
-                                    <h3 className="font-medium mb-2" data-oid="g:-_oc.">
+                                    <h3
+                                        className="font-medium mb-2 text-[#1d1c1c]"
+                                        data-oid="g:-_oc."
+                                    >
                                         已选择的标签：
                                     </h3>
                                     <div className="flex flex-wrap gap-2" data-oid="uychu.y">
                                         {selectedTags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-3 py-1 bg-white/20 rounded-full text-sm"
+                                                className="px-3 py-1 bg-[#fffefb]/80 rounded-full text-sm text-[#313d44] border border-[#cccbc8]/50"
                                                 data-oid="m83w9nt"
                                             >
                                                 {tag}
@@ -277,18 +295,18 @@ export default function Page() {
                     <div className="space-y-8" data-oid="lu3c5xk">
                         <div className="text-center py-12" data-oid="ge:dhbk">
                             <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
                                 data-oid="-:g2qqe"
                             >
                                 AI智能分析
                             </h1>
-                            <p className="text-xl text-gray-300" data-oid="oz3mq3c">
+                            <p className="text-xl text-[#313d44]" data-oid="oz3mq3c">
                                 基于您的画像生成热点创作内容
                             </p>
                         </div>
 
                         <div
-                            className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20"
+                            className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30"
                             data-oid="u:lrmec"
                         >
                             {selectedTags.length === 0 ? (
@@ -296,12 +314,12 @@ export default function Page() {
                                     <div className="text-6xl mb-4" data-oid=":ckgawt">
                                         🤖
                                     </div>
-                                    <p className="text-xl text-gray-300 mb-4" data-oid="n_ygq41">
+                                    <p className="text-xl text-[#313d44] mb-4" data-oid="n_ygq41">
                                         请先在用户画像页面选择标签
                                     </p>
                                     <button
                                         onClick={() => setCurrentView('profile')}
-                                        className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all"
+                                        className="px-6 py-3 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-lg hover:from-[#00668c] hover:to-[#3b3c3d] transition-all text-white"
                                         data-oid="0sri0rr"
                                     >
                                         去选择标签
@@ -313,20 +331,23 @@ export default function Page() {
                                         className="flex justify-between items-center"
                                         data-oid="fwjpot3"
                                     >
-                                        <h2 className="text-2xl font-bold" data-oid="rr0aj0x">
+                                        <h2
+                                            className="text-2xl font-bold text-[#1d1c1c]"
+                                            data-oid="rr0aj0x"
+                                        >
                                             智能内容生成
                                         </h2>
                                         <div className="flex gap-3" data-oid="zx1jmkm">
                                             <button
                                                 onClick={generateContent}
-                                                className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all transform hover:scale-105"
+                                                className="px-6 py-3 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-lg hover:from-[#00668c] hover:to-[#3b3c3d] transition-all transform hover:scale-105 text-white"
                                                 data-oid="rt.g2lp"
                                             >
                                                 🚀 生成内容
                                             </button>
                                             {generationHistory.length > 0 && (
                                                 <span
-                                                    className="px-3 py-3 bg-white/10 rounded-lg text-sm text-gray-300"
+                                                    className="px-3 py-3 bg-[#d4eaf7]/50 rounded-lg text-sm text-[#313d44] border border-[#cccbc8]/30"
                                                     data-oid="ng2tx_9"
                                                 >
                                                     已生成 {generationHistory.length} 条记录
@@ -337,7 +358,7 @@ export default function Page() {
 
                                     {generatedContent && (
                                         <div
-                                            className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-xl p-6 border border-cyan-500/30"
+                                            className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-xl p-6 border border-[#71c4ef]/30"
                                             data-oid="l2bw9hn"
                                         >
                                             <div
@@ -345,7 +366,7 @@ export default function Page() {
                                                 data-oid="61.nr:r"
                                             >
                                                 <span
-                                                    className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-sm font-medium"
+                                                    className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white"
                                                     data-oid="yeaucej"
                                                 >
                                                     {generatedContent.category}
@@ -355,22 +376,25 @@ export default function Page() {
                                                     data-oid="ia.08hb"
                                                 >
                                                     <div
-                                                        className="w-2 h-2 bg-red-500 rounded-full animate-pulse"
+                                                        className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"
                                                         data-oid="j9tr871"
                                                     ></div>
-                                                    <span className="text-sm" data-oid="aay4c1s">
+                                                    <span
+                                                        className="text-sm text-[#313d44]"
+                                                        data-oid="aay4c1s"
+                                                    >
                                                         热度 {generatedContent.heat}%
                                                     </span>
                                                 </div>
                                             </div>
                                             <h3
-                                                className="text-xl font-bold mb-3 text-cyan-300"
+                                                className="text-xl font-bold mb-3 text-[#00668c]"
                                                 data-oid="siavefo"
                                             >
                                                 {generatedContent.title}
                                             </h3>
                                             <p
-                                                className="text-gray-300 leading-relaxed"
+                                                className="text-[#313d44] leading-relaxed"
                                                 data-oid="3o8ax1_"
                                             >
                                                 {generatedContent.content}
@@ -383,11 +407,11 @@ export default function Page() {
                                         data-oid="7xhokof"
                                     >
                                         <div
-                                            className="bg-white/5 rounded-lg p-4 border border-white/10"
+                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
                                             data-oid="qhknrj."
                                         >
                                             <h4
-                                                className="font-medium mb-2 text-cyan-400"
+                                                className="font-medium mb-2 text-[#00668c]"
                                                 data-oid="aa2t_kd"
                                             >
                                                 您的标签
@@ -399,7 +423,7 @@ export default function Page() {
                                                 {selectedTags.map((tag) => (
                                                     <span
                                                         key={tag}
-                                                        className="px-2 py-1 bg-white/20 rounded text-sm"
+                                                        className="px-2 py-1 bg-[#d4eaf7]/50 rounded text-sm text-[#313d44]"
                                                         data-oid="3xtr.ws"
                                                     >
                                                         {tag}
@@ -408,30 +432,36 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <div
-                                            className="bg-white/5 rounded-lg p-4 border border-white/10"
+                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
                                             data-oid="a_szv7b"
                                         >
                                             <h4
-                                                className="font-medium mb-2 text-purple-400"
+                                                className="font-medium mb-2 text-[#71c4ef]"
                                                 data-oid="56oyzm6"
                                             >
                                                 匹配热点
                                             </h4>
-                                            <p className="text-sm text-gray-300" data-oid="u-85mjf">
+                                            <p
+                                                className="text-sm text-[#313d44]"
+                                                data-oid="u-85mjf"
+                                            >
                                                 基于当前热门话题智能匹配
                                             </p>
                                         </div>
                                         <div
-                                            className="bg-white/5 rounded-lg p-4 border border-white/10"
+                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
                                             data-oid="2:tsnqv"
                                         >
                                             <h4
-                                                className="font-medium mb-2 text-pink-400"
+                                                className="font-medium mb-2 text-[#3b3c3d]"
                                                 data-oid="w99bao5"
                                             >
                                                 创作建议
                                             </h4>
-                                            <p className="text-sm text-gray-300" data-oid="flmofkq">
+                                            <p
+                                                className="text-sm text-[#313d44]"
+                                                data-oid="flmofkq"
+                                            >
                                                 个性化内容创作方向推荐
                                             </p>
                                         </div>
@@ -441,7 +471,7 @@ export default function Page() {
                                     {generationHistory.length > 0 && (
                                         <div className="mt-8" data-oid="7uxwu.s">
                                             <h3
-                                                className="text-xl font-bold mb-4 text-cyan-300"
+                                                className="text-xl font-bold mb-4 text-[#00668c]"
                                                 data-oid="86toysc"
                                             >
                                                 📝 生成历史记录
@@ -453,7 +483,7 @@ export default function Page() {
                                                 {generationHistory.map((item) => (
                                                     <div
                                                         key={item.id}
-                                                        className="bg-white/5 rounded-lg p-4 border border-white/10 hover:bg-white/10 transition-all"
+                                                        className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30 hover:bg-[#d4eaf7]/30 transition-all"
                                                         data-oid="8eht.0l"
                                                     >
                                                         <div
@@ -461,7 +491,7 @@ export default function Page() {
                                                             data-oid="7.b7826"
                                                         >
                                                             <span
-                                                                className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-xs font-medium"
+                                                                className="px-2 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-xs font-medium text-white"
                                                                 data-oid="h7w319v"
                                                             >
                                                                 {item.category}
@@ -471,7 +501,7 @@ export default function Page() {
                                                                 data-oid="y0c-u0:"
                                                             >
                                                                 <span
-                                                                    className="text-xs text-gray-400"
+                                                                    className="text-xs text-[#313d44]"
                                                                     data-oid="hwbvyym"
                                                                 >
                                                                     {item.timestamp}
@@ -481,11 +511,11 @@ export default function Page() {
                                                                     data-oid="1drv8q4"
                                                                 >
                                                                     <div
-                                                                        className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                                                                        className="w-1.5 h-1.5 bg-[#71c4ef] rounded-full animate-pulse"
                                                                         data-oid="_29dcly"
                                                                     ></div>
                                                                     <span
-                                                                        className="text-xs text-gray-300"
+                                                                        className="text-xs text-[#313d44]"
                                                                         data-oid="3cdz:lk"
                                                                     >
                                                                         {item.heat}%
@@ -494,13 +524,13 @@ export default function Page() {
                                                             </div>
                                                         </div>
                                                         <h4
-                                                            className="font-medium mb-2 text-cyan-200 text-sm"
+                                                            className="font-medium mb-2 text-[#00668c] text-sm"
                                                             data-oid="mr2lxh:"
                                                         >
                                                             {item.title}
                                                         </h4>
                                                         <p
-                                                            className="text-xs text-gray-400 mb-2 line-clamp-2"
+                                                            className="text-xs text-[#313d44] mb-2 line-clamp-2"
                                                             data-oid="eh8bpjp"
                                                         >
                                                             {item.content}
@@ -512,7 +542,7 @@ export default function Page() {
                                                             {item.tags.map((tag) => (
                                                                 <span
                                                                     key={tag}
-                                                                    className="px-2 py-0.5 bg-white/10 rounded text-xs text-gray-300"
+                                                                    className="px-2 py-0.5 bg-[#d4eaf7]/50 rounded text-xs text-[#313d44] border border-[#cccbc8]/30"
                                                                     data-oid="bll6vyk"
                                                                 >
                                                                     {tag}
