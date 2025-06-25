@@ -57,6 +57,10 @@ export default function Page() {
         }
     };
 
+    const removeTag = (tagToRemove) => {
+        setSelectedTags((prev) => prev.filter((tag) => tag !== tagToRemove));
+    };
+
     const generateContent = () => {
         if (selectedTags.length === 0) return;
 
@@ -85,7 +89,6 @@ export default function Page() {
     return (
         <div
             className="min-h-screen bg-gradient-to-br from-[#fffefb] via-[#f5f4f1] to-[#d4eaf7] text-[#1d1c1c]"
-            data-oid="p.1xrf0"
             style={{
                 '--primary-100': '#d4eaf7',
                 '--primary-200': '#b6ccd8',
@@ -100,39 +103,27 @@ export default function Page() {
             }}
         >
             {/* 导航栏 */}
-            <nav
-                className="p-6 backdrop-blur-sm bg-[#f5f4f1]/80 border-b border-[#cccbc8]/50"
-                data-oid="eqew-7p"
-            >
-                <div
-                    className="max-w-7xl mx-auto flex justify-between items-center"
-                    data-oid="3aih0k:"
-                >
-                    <div
-                        className="text-2xl font-bold bg-gradient-to-r from-[#00668c] to-[#71c4ef] bg-clip-text text-transparent"
-                        data-oid="mm6d9_u"
-                    >
+            <nav className="p-6 backdrop-blur-sm bg-[#f5f4f1]/80 border-b border-[#cccbc8]/50">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <div className="text-2xl font-bold bg-gradient-to-r from-[#00668c] to-[#71c4ef] bg-clip-text text-transparent">
                         AI创作助手
                     </div>
-                    <div className="flex space-x-6" data-oid="hg:p8w0">
+                    <div className="flex space-x-6">
                         <button
                             onClick={() => setCurrentView('home')}
                             className={`px-4 py-2 rounded-lg transition-all ${currentView === 'home' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
-                            data-oid="v2yn9sn"
                         >
                             主页
                         </button>
                         <button
                             onClick={() => setCurrentView('profile')}
                             className={`px-4 py-2 rounded-lg transition-all ${currentView === 'profile' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
-                            data-oid="t2dm9w2"
                         >
                             用户画像
                         </button>
                         <button
                             onClick={() => setCurrentView('analysis')}
                             className={`px-4 py-2 rounded-lg transition-all ${currentView === 'analysis' ? 'bg-[#d4eaf7] text-[#00668c]' : 'hover:bg-[#cccbc8]/30 text-[#313d44]'}`}
-                            data-oid="db_327u"
                         >
                             AI分析
                         </button>
@@ -140,72 +131,41 @@ export default function Page() {
                 </div>
             </nav>
 
-            <div className="max-w-7xl mx-auto p-6" data-oid=".x1_siu">
+            <div className="max-w-7xl mx-auto p-6">
                 {/* 主页 - 热点展示 */}
                 {currentView === 'home' && (
-                    <div className="space-y-8" data-oid="s:9hfo5">
-                        <div className="text-center py-12" data-oid=":bd:9-q">
-                            <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
-                                data-oid="ml.je.8"
-                            >
+                    <div className="space-y-8">
+                        <div className="text-center py-12">
+                            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent">
                                 全部热点展示
                             </h1>
-                            <p className="text-xl text-[#313d44]" data-oid="wa2byw7">
-                                发现当下最热门的创作话题
-                            </p>
+                            <p className="text-xl text-[#313d44]">发现当下最热门的创作话题</p>
                         </div>
 
-                        <div
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-                            data-oid="2ceq:l6"
-                        >
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             {hotTopics.map((topic) => (
                                 <div
                                     key={topic.id}
                                     className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-6 border border-[#cccbc8]/30 hover:bg-[#d4eaf7]/50 transition-all hover:scale-105"
-                                    data-oid="2s2z3ig"
                                 >
-                                    <div
-                                        className="flex justify-between items-start mb-4"
-                                        data-oid="w1guc7l"
-                                    >
-                                        <span
-                                            className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white"
-                                            data-oid="-ptfr9i"
-                                        >
+                                    <div className="flex justify-between items-start mb-4">
+                                        <span className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white">
                                             {topic.category}
                                         </span>
-                                        <div
-                                            className="flex items-center space-x-1"
-                                            data-oid="91zdql2"
-                                        >
-                                            <div
-                                                className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"
-                                                data-oid="uvtjh0p"
-                                            ></div>
-                                            <span
-                                                className="text-sm text-[#313d44]"
-                                                data-oid="wng099r"
-                                            >
+                                        <div className="flex items-center space-x-1">
+                                            <div className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"></div>
+                                            <span className="text-sm text-[#313d44]">
                                                 {topic.heat}%
                                             </span>
                                         </div>
                                     </div>
-                                    <h3
-                                        className="text-lg font-semibold mb-2 text-[#1d1c1c]"
-                                        data-oid=".r30jeo"
-                                    >
+                                    <h3 className="text-lg font-semibold mb-2 text-[#1d1c1c]">
                                         {topic.title}
                                     </h3>
-                                    <div
-                                        className="w-full bg-[#cccbc8] rounded-full h-2"
-                                        data-oid="0fw1bqf"
-                                    >
+                                    <div className="w-full bg-[#cccbc8] rounded-full h-2">
                                         <div
                                             className="bg-gradient-to-r from-[#71c4ef] to-[#00668c] h-2 rounded-full transition-all duration-1000"
                                             style={{ width: `${topic.heat}%` }}
-                                            data-oid="vy:ma_k"
                                         ></div>
                                     </div>
                                 </div>
@@ -216,31 +176,20 @@ export default function Page() {
 
                 {/* 用户画像构建 */}
                 {currentView === 'profile' && (
-                    <div className="space-y-8" data-oid="0j9my.v">
-                        <div className="text-center py-12" data-oid="xg1mwee">
-                            <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
-                                data-oid="plpziv_"
-                            >
+                    <div className="space-y-8">
+                        <div className="text-center py-12">
+                            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent">
                                 用户画像构建
                             </h1>
-                            <p className="text-xl text-[#313d44]" data-oid="rtmce8o">
-                                选择标签，构建专属创作画像
-                            </p>
+                            <p className="text-xl text-[#313d44]">选择标签，构建专属创作画像</p>
                         </div>
 
-                        <div
-                            className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30"
-                            data-oid="t0m2l6s"
-                        >
-                            <div className="mb-6" data-oid="m4bihee">
-                                <label
-                                    className="block text-lg font-medium mb-3 text-[#1d1c1c]"
-                                    data-oid="3zrmad8"
-                                >
+                        <div className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30">
+                            <div className="mb-6">
+                                <label className="block text-lg font-medium mb-3 text-[#1d1c1c]">
                                     输入您的描述
                                 </label>
-                                <div className="flex gap-3" data-oid="sy.ypl:">
+                                <div className="flex gap-3">
                                     <input
                                         type="text"
                                         value={userInput}
@@ -248,7 +197,6 @@ export default function Page() {
                                         onKeyPress={handleInputKeyPress}
                                         placeholder="描述您的兴趣、职业或创作方向..."
                                         className="flex-1 px-4 py-3 bg-[#fffefb] border border-[#cccbc8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#71c4ef] text-[#1d1c1c] placeholder-[#313d44]"
-                                        data-oid="ryo:uf1"
                                     />
 
                                     <button
@@ -263,26 +211,20 @@ export default function Page() {
                                                 ? 'bg-gradient-to-r from-[#71c4ef] to-[#00668c] hover:from-[#00668c] hover:to-[#3b3c3d] text-white transform hover:scale-105'
                                                 : 'bg-[#cccbc8]/50 text-[#313d44]/50 cursor-not-allowed'
                                         }`}
-                                        data-oid="0f7koxo"
                                     >
                                         确定
                                     </button>
                                 </div>
                                 {userInput.trim() && selectedTags.includes(userInput.trim()) && (
-                                    <p className="text-sm text-[#71c4ef] mt-2" data-oid="v2k4.6c">
-                                        ⚠️ 该标签已存在
-                                    </p>
+                                    <p className="text-sm text-[#71c4ef] mt-2">⚠️ 该标签已存在</p>
                                 )}
                             </div>
 
-                            <div className="mb-6" data-oid="4ngi_qi">
-                                <label
-                                    className="block text-lg font-medium mb-3 text-[#1d1c1c]"
-                                    data-oid="lilvan0"
-                                >
+                            <div className="mb-6">
+                                <label className="block text-lg font-medium mb-3 text-[#1d1c1c]">
                                     选择标签
                                 </label>
-                                <div className="flex flex-wrap gap-3" data-oid="i3hsq0x">
+                                <div className="flex flex-wrap gap-3">
                                     {userTags.map((tag) => (
                                         <button
                                             key={tag}
@@ -292,7 +234,6 @@ export default function Page() {
                                                     ? 'bg-gradient-to-r from-[#71c4ef] to-[#00668c] border-transparent text-white shadow-lg'
                                                     : 'border-[#cccbc8] hover:border-[#71c4ef] hover:bg-[#d4eaf7]/30 text-[#313d44]'
                                             }`}
-                                            data-oid="t.i52-."
                                         >
                                             {tag}
                                         </button>
@@ -301,25 +242,25 @@ export default function Page() {
                             </div>
 
                             {selectedTags.length > 0 && (
-                                <div
-                                    className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-lg p-4 border border-[#71c4ef]/30"
-                                    data-oid="0c17-uu"
-                                >
-                                    <h3
-                                        className="font-medium mb-2 text-[#1d1c1c]"
-                                        data-oid="g:-_oc."
-                                    >
+                                <div className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-lg p-4 border border-[#71c4ef]/30">
+                                    <h3 className="font-medium mb-2 text-[#1d1c1c]">
                                         已选择的标签：
                                     </h3>
-                                    <div className="flex flex-wrap gap-2" data-oid="uychu.y">
+                                    <div className="flex flex-wrap gap-2">
                                         {selectedTags.map((tag) => (
-                                            <span
+                                            <div
                                                 key={tag}
-                                                className="px-3 py-1 bg-[#fffefb]/80 rounded-full text-sm text-[#313d44] border border-[#cccbc8]/50"
-                                                data-oid="m83w9nt"
+                                                className="flex items-center gap-1 px-3 py-1 bg-[#fffefb]/80 rounded-full text-sm text-[#313d44] border border-[#cccbc8]/50 group hover:bg-[#d4eaf7]/30 transition-all"
                                             >
-                                                {tag}
-                                            </span>
+                                                <span>{tag}</span>
+                                                <button
+                                                    onClick={() => removeTag(tag)}
+                                                    className="ml-1 w-4 h-4 rounded-full bg-[#cccbc8]/50 hover:bg-[#71c4ef] text-[#313d44] hover:text-white transition-all flex items-center justify-center text-xs font-bold group-hover:scale-110"
+                                                    title="删除标签"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
@@ -330,64 +271,43 @@ export default function Page() {
 
                 {/* AI分析 */}
                 {currentView === 'analysis' && (
-                    <div className="space-y-8" data-oid="lu3c5xk">
-                        <div className="text-center py-12" data-oid="ge:dhbk">
-                            <h1
-                                className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent"
-                                data-oid="-:g2qqe"
-                            >
+                    <div className="space-y-8">
+                        <div className="text-center py-12">
+                            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00668c] via-[#71c4ef] to-[#3b3c3d] bg-clip-text text-transparent">
                                 AI智能分析
                             </h1>
-                            <p className="text-xl text-[#313d44]" data-oid="oz3mq3c">
-                                基于您的画像生成热点创作内容
-                            </p>
+                            <p className="text-xl text-[#313d44]">基于您的画像生成热点创作内容</p>
                         </div>
 
-                        <div
-                            className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30"
-                            data-oid="u:lrmec"
-                        >
+                        <div className="bg-[#f5f4f1]/80 backdrop-blur-sm rounded-xl p-8 border border-[#cccbc8]/30">
                             {selectedTags.length === 0 ? (
-                                <div className="text-center py-12" data-oid="9um_8o_">
-                                    <div className="text-6xl mb-4" data-oid=":ckgawt">
-                                        🤖
-                                    </div>
-                                    <p className="text-xl text-[#313d44] mb-4" data-oid="n_ygq41">
+                                <div className="text-center py-12">
+                                    <div className="text-6xl mb-4">🤖</div>
+                                    <p className="text-xl text-[#313d44] mb-4">
                                         请先在用户画像页面选择标签
                                     </p>
                                     <button
                                         onClick={() => setCurrentView('profile')}
                                         className="px-6 py-3 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-lg hover:from-[#00668c] hover:to-[#3b3c3d] transition-all text-white"
-                                        data-oid="0sri0rr"
                                     >
                                         去选择标签
                                     </button>
                                 </div>
                             ) : (
-                                <div className="space-y-6" data-oid="fpshmqc">
-                                    <div
-                                        className="flex justify-between items-center"
-                                        data-oid="fwjpot3"
-                                    >
-                                        <h2
-                                            className="text-2xl font-bold text-[#1d1c1c]"
-                                            data-oid="rr0aj0x"
-                                        >
+                                <div className="space-y-6">
+                                    <div className="flex justify-between items-center">
+                                        <h2 className="text-2xl font-bold text-[#1d1c1c]">
                                             智能内容生成
                                         </h2>
-                                        <div className="flex gap-3" data-oid="zx1jmkm">
+                                        <div className="flex gap-3">
                                             <button
                                                 onClick={generateContent}
                                                 className="px-6 py-3 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-lg hover:from-[#00668c] hover:to-[#3b3c3d] transition-all transform hover:scale-105 text-white"
-                                                data-oid="rt.g2lp"
                                             >
                                                 🚀 生成内容
                                             </button>
                                             {generationHistory.length > 0 && (
-                                                <span
-                                                    className="px-3 py-3 bg-[#d4eaf7]/50 rounded-lg text-sm text-[#313d44] border border-[#cccbc8]/30"
-                                                    data-oid="ng2tx_9"
-                                                >
+                                                <span className="px-3 py-3 bg-[#d4eaf7]/50 rounded-lg text-sm text-[#313d44] border border-[#cccbc8]/30">
                                                     已生成 {generationHistory.length} 条记录
                                                 </span>
                                             )}
@@ -395,111 +315,63 @@ export default function Page() {
                                     </div>
 
                                     {generatedContent && (
-                                        <div
-                                            className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-xl p-6 border border-[#71c4ef]/30"
-                                            data-oid="l2bw9hn"
-                                        >
-                                            <div
-                                                className="flex items-center justify-between mb-4"
-                                                data-oid="61.nr:r"
-                                            >
-                                                <span
-                                                    className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white"
-                                                    data-oid="yeaucej"
-                                                >
+                                        <div className="bg-gradient-to-r from-[#d4eaf7]/50 to-[#b6ccd8]/30 rounded-xl p-6 border border-[#71c4ef]/30">
+                                            <div className="flex items-center justify-between mb-4">
+                                                <span className="px-3 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-sm font-medium text-white">
                                                     {generatedContent.category}
                                                 </span>
-                                                <div
-                                                    className="flex items-center space-x-2"
-                                                    data-oid="ia.08hb"
-                                                >
-                                                    <div
-                                                        className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"
-                                                        data-oid="j9tr871"
-                                                    ></div>
-                                                    <span
-                                                        className="text-sm text-[#313d44]"
-                                                        data-oid="aay4c1s"
-                                                    >
+                                                <div className="flex items-center space-x-2">
+                                                    <div className="w-2 h-2 bg-[#71c4ef] rounded-full animate-pulse"></div>
+                                                    <span className="text-sm text-[#313d44]">
                                                         热度 {generatedContent.heat}%
                                                     </span>
                                                 </div>
                                             </div>
-                                            <h3
-                                                className="text-xl font-bold mb-3 text-[#00668c]"
-                                                data-oid="siavefo"
-                                            >
+                                            <h3 className="text-xl font-bold mb-3 text-[#00668c]">
                                                 {generatedContent.title}
                                             </h3>
-                                            <p
-                                                className="text-[#313d44] leading-relaxed"
-                                                data-oid="3o8ax1_"
-                                            >
+                                            <p className="text-[#313d44] leading-relaxed">
                                                 {generatedContent.content}
                                             </p>
                                         </div>
                                     )}
 
-                                    <div
-                                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                                        data-oid="7xhokof"
-                                    >
-                                        <div
-                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
-                                            data-oid="qhknrj."
-                                        >
-                                            <h4
-                                                className="font-medium mb-2 text-[#00668c]"
-                                                data-oid="aa2t_kd"
-                                            >
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30">
+                                            <h4 className="font-medium mb-2 text-[#00668c]">
                                                 您的标签
                                             </h4>
-                                            <div
-                                                className="flex flex-wrap gap-2"
-                                                data-oid="-2hqxb2"
-                                            >
+                                            <div className="flex flex-wrap gap-2">
                                                 {selectedTags.map((tag) => (
-                                                    <span
+                                                    <div
                                                         key={tag}
-                                                        className="px-2 py-1 bg-[#d4eaf7]/50 rounded text-sm text-[#313d44]"
-                                                        data-oid="3xtr.ws"
+                                                        className="flex items-center gap-1 px-2 py-1 bg-[#d4eaf7]/50 rounded text-sm text-[#313d44] group hover:bg-[#b6ccd8]/40 transition-all"
                                                     >
-                                                        {tag}
-                                                    </span>
+                                                        <span>{tag}</span>
+                                                        <button
+                                                            onClick={() => removeTag(tag)}
+                                                            className="w-3 h-3 rounded-full bg-[#cccbc8]/50 hover:bg-[#71c4ef] text-[#313d44] hover:text-white transition-all flex items-center justify-center text-xs font-bold group-hover:scale-110"
+                                                            title="删除标签"
+                                                        >
+                                                            ×
+                                                        </button>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </div>
-                                        <div
-                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
-                                            data-oid="a_szv7b"
-                                        >
-                                            <h4
-                                                className="font-medium mb-2 text-[#71c4ef]"
-                                                data-oid="56oyzm6"
-                                            >
+                                        <div className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30">
+                                            <h4 className="font-medium mb-2 text-[#71c4ef]">
                                                 匹配热点
                                             </h4>
-                                            <p
-                                                className="text-sm text-[#313d44]"
-                                                data-oid="u-85mjf"
-                                            >
+                                            <p className="text-sm text-[#313d44]">
                                                 基于当前热门话题智能匹配
                                             </p>
                                         </div>
-                                        <div
-                                            className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30"
-                                            data-oid="2:tsnqv"
-                                        >
-                                            <h4
-                                                className="font-medium mb-2 text-[#3b3c3d]"
-                                                data-oid="w99bao5"
-                                            >
+                                        <div className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30">
+                                            <h4 className="font-medium mb-2 text-[#3b3c3d]">
                                                 创作建议
                                             </h4>
-                                            <p
-                                                className="text-sm text-[#313d44]"
-                                                data-oid="flmofkq"
-                                            >
+                                            <p className="text-sm text-[#313d44]">
                                                 个性化内容创作方向推荐
                                             </p>
                                         </div>
@@ -507,81 +379,43 @@ export default function Page() {
 
                                     {/* 生成历史记录 */}
                                     {generationHistory.length > 0 && (
-                                        <div className="mt-8" data-oid="7uxwu.s">
-                                            <h3
-                                                className="text-xl font-bold mb-4 text-[#00668c]"
-                                                data-oid="86toysc"
-                                            >
+                                        <div className="mt-8">
+                                            <h3 className="text-xl font-bold mb-4 text-[#00668c]">
                                                 📝 生成历史记录
                                             </h3>
-                                            <div
-                                                className="space-y-4 max-h-96 overflow-y-auto"
-                                                data-oid="up-iv35"
-                                            >
+                                            <div className="space-y-4 max-h-96 overflow-y-auto">
                                                 {generationHistory.map((item) => (
                                                     <div
                                                         key={item.id}
                                                         className="bg-[#fffefb]/80 rounded-lg p-4 border border-[#cccbc8]/30 hover:bg-[#d4eaf7]/30 transition-all"
-                                                        data-oid="8eht.0l"
                                                     >
-                                                        <div
-                                                            className="flex items-center justify-between mb-2"
-                                                            data-oid="7.b7826"
-                                                        >
-                                                            <span
-                                                                className="px-2 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-xs font-medium text-white"
-                                                                data-oid="h7w319v"
-                                                            >
+                                                        <div className="flex items-center justify-between mb-2">
+                                                            <span className="px-2 py-1 bg-gradient-to-r from-[#71c4ef] to-[#00668c] rounded-full text-xs font-medium text-white">
                                                                 {item.category}
                                                             </span>
-                                                            <div
-                                                                className="flex items-center space-x-2"
-                                                                data-oid="y0c-u0:"
-                                                            >
-                                                                <span
-                                                                    className="text-xs text-[#313d44]"
-                                                                    data-oid="hwbvyym"
-                                                                >
+                                                            <div className="flex items-center space-x-2">
+                                                                <span className="text-xs text-[#313d44]">
                                                                     {item.timestamp}
                                                                 </span>
-                                                                <div
-                                                                    className="flex items-center space-x-1"
-                                                                    data-oid="1drv8q4"
-                                                                >
-                                                                    <div
-                                                                        className="w-1.5 h-1.5 bg-[#71c4ef] rounded-full animate-pulse"
-                                                                        data-oid="_29dcly"
-                                                                    ></div>
-                                                                    <span
-                                                                        className="text-xs text-[#313d44]"
-                                                                        data-oid="3cdz:lk"
-                                                                    >
+                                                                <div className="flex items-center space-x-1">
+                                                                    <div className="w-1.5 h-1.5 bg-[#71c4ef] rounded-full animate-pulse"></div>
+                                                                    <span className="text-xs text-[#313d44]">
                                                                         {item.heat}%
                                                                     </span>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <h4
-                                                            className="font-medium mb-2 text-[#00668c] text-sm"
-                                                            data-oid="mr2lxh:"
-                                                        >
+                                                        <h4 className="font-medium mb-2 text-[#00668c] text-sm">
                                                             {item.title}
                                                         </h4>
-                                                        <p
-                                                            className="text-xs text-[#313d44] mb-2 line-clamp-2"
-                                                            data-oid="eh8bpjp"
-                                                        >
+                                                        <p className="text-xs text-[#313d44] mb-2 line-clamp-2">
                                                             {item.content}
                                                         </p>
-                                                        <div
-                                                            className="flex flex-wrap gap-1"
-                                                            data-oid="9d_3jmg"
-                                                        >
+                                                        <div className="flex flex-wrap gap-1">
                                                             {item.tags.map((tag) => (
                                                                 <span
                                                                     key={tag}
                                                                     className="px-2 py-0.5 bg-[#d4eaf7]/50 rounded text-xs text-[#313d44] border border-[#cccbc8]/30"
-                                                                    data-oid="bll6vyk"
                                                                 >
                                                                     {tag}
                                                                 </span>
