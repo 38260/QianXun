@@ -7,6 +7,7 @@ export default function Page() {
     const [selectedTags, setSelectedTags] = useState([]);
     const [currentView, setCurrentView] = useState('home');
     const [generatedContent, setGeneratedContent] = useState(null);
+    const [generationHistory, setGenerationHistory] = useState([]);
 
     const hotTopics = [
         { id: 1, title: 'AI技术革命', heat: 95, category: '科技' },
@@ -54,12 +55,18 @@ export default function Page() {
             `${selectedTags[0]}视角：${randomTopic.title}的未来展望`,
         ];
 
-        setGeneratedContent({
+        const newContent = {
+            id: Date.now(),
             title: titles[Math.floor(Math.random() * titles.length)],
             content: `基于您的标签"${selectedTags.join('、')}"和当前热点"${randomTopic.title}"，我们为您生成了专属内容方向。这个话题在${randomTopic.category}领域热度达到${randomTopic.heat}%，非常适合当下创作。建议从行业趋势、实际应用、未来发展三个维度展开内容创作。`,
             category: randomTopic.category,
             heat: randomTopic.heat,
-        });
+            tags: [...selectedTags],
+            timestamp: new Date().toLocaleString('zh-CN'),
+        };
+
+        setGeneratedContent(newContent);
+        setGenerationHistory((prev) => [newContent, ...prev]);
     };
 
     return (
@@ -309,13 +316,23 @@ export default function Page() {
                                         <h2 className="text-2xl font-bold" data-oid="rr0aj0x">
                                             智能内容生成
                                         </h2>
-                                        <button
-                                            onClick={generateContent}
-                                            className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all transform hover:scale-105"
-                                            data-oid="rt.g2lp"
-                                        >
-                                            🚀 生成内容
-                                        </button>
+                                        <div className="flex gap-3" data-oid="zx1jmkm">
+                                            <button
+                                                onClick={generateContent}
+                                                className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all transform hover:scale-105"
+                                                data-oid="rt.g2lp"
+                                            >
+                                                🚀 生成内容
+                                            </button>
+                                            {generationHistory.length > 0 && (
+                                                <span
+                                                    className="px-3 py-3 bg-white/10 rounded-lg text-sm text-gray-300"
+                                                    data-oid="ng2tx_9"
+                                                >
+                                                    已生成 {generationHistory.length} 条记录
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
 
                                     {generatedContent && (
@@ -419,6 +436,94 @@ export default function Page() {
                                             </p>
                                         </div>
                                     </div>
+
+                                    {/* 生成历史记录 */}
+                                    {generationHistory.length > 0 && (
+                                        <div className="mt-8" data-oid="7uxwu.s">
+                                            <h3
+                                                className="text-xl font-bold mb-4 text-cyan-300"
+                                                data-oid="86toysc"
+                                            >
+                                                📝 生成历史记录
+                                            </h3>
+                                            <div
+                                                className="space-y-4 max-h-96 overflow-y-auto"
+                                                data-oid="up-iv35"
+                                            >
+                                                {generationHistory.map((item) => (
+                                                    <div
+                                                        key={item.id}
+                                                        className="bg-white/5 rounded-lg p-4 border border-white/10 hover:bg-white/10 transition-all"
+                                                        data-oid="8eht.0l"
+                                                    >
+                                                        <div
+                                                            className="flex items-center justify-between mb-2"
+                                                            data-oid="7.b7826"
+                                                        >
+                                                            <span
+                                                                className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-xs font-medium"
+                                                                data-oid="h7w319v"
+                                                            >
+                                                                {item.category}
+                                                            </span>
+                                                            <div
+                                                                className="flex items-center space-x-2"
+                                                                data-oid="y0c-u0:"
+                                                            >
+                                                                <span
+                                                                    className="text-xs text-gray-400"
+                                                                    data-oid="hwbvyym"
+                                                                >
+                                                                    {item.timestamp}
+                                                                </span>
+                                                                <div
+                                                                    className="flex items-center space-x-1"
+                                                                    data-oid="1drv8q4"
+                                                                >
+                                                                    <div
+                                                                        className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                                                                        data-oid="_29dcly"
+                                                                    ></div>
+                                                                    <span
+                                                                        className="text-xs text-gray-300"
+                                                                        data-oid="3cdz:lk"
+                                                                    >
+                                                                        {item.heat}%
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h4
+                                                            className="font-medium mb-2 text-cyan-200 text-sm"
+                                                            data-oid="mr2lxh:"
+                                                        >
+                                                            {item.title}
+                                                        </h4>
+                                                        <p
+                                                            className="text-xs text-gray-400 mb-2 line-clamp-2"
+                                                            data-oid="eh8bpjp"
+                                                        >
+                                                            {item.content}
+                                                        </p>
+                                                        <div
+                                                            className="flex flex-wrap gap-1"
+                                                            data-oid="9d_3jmg"
+                                                        >
+                                                            {item.tags.map((tag) => (
+                                                                <span
+                                                                    key={tag}
+                                                                    className="px-2 py-0.5 bg-white/10 rounded text-xs text-gray-300"
+                                                                    data-oid="bll6vyk"
+                                                                >
+                                                                    {tag}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>
