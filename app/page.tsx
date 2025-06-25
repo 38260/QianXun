@@ -44,6 +44,19 @@ export default function Page() {
         );
     };
 
+    const addCustomTag = () => {
+        if (userInput.trim() && !selectedTags.includes(userInput.trim())) {
+            setSelectedTags((prev) => [...prev, userInput.trim()]);
+            setUserInput('');
+        }
+    };
+
+    const handleInputKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            addCustomTag();
+        }
+    };
+
     const generateContent = () => {
         if (selectedTags.length === 0) return;
 
@@ -227,14 +240,39 @@ export default function Page() {
                                 >
                                     输入您的描述
                                 </label>
-                                <input
-                                    type="text"
-                                    value={userInput}
-                                    onChange={(e) => setUserInput(e.target.value)}
-                                    placeholder="描述您的兴趣、职业或创作方向..."
-                                    className="w-full px-4 py-3 bg-[#fffefb] border border-[#cccbc8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#71c4ef] text-[#1d1c1c] placeholder-[#313d44]"
-                                    data-oid="ryo:uf1"
-                                />
+                                <div className="flex gap-3" data-oid="sy.ypl:">
+                                    <input
+                                        type="text"
+                                        value={userInput}
+                                        onChange={(e) => setUserInput(e.target.value)}
+                                        onKeyPress={handleInputKeyPress}
+                                        placeholder="描述您的兴趣、职业或创作方向..."
+                                        className="flex-1 px-4 py-3 bg-[#fffefb] border border-[#cccbc8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#71c4ef] text-[#1d1c1c] placeholder-[#313d44]"
+                                        data-oid="ryo:uf1"
+                                    />
+
+                                    <button
+                                        onClick={addCustomTag}
+                                        disabled={
+                                            !userInput.trim() ||
+                                            selectedTags.includes(userInput.trim())
+                                        }
+                                        className={`px-6 py-3 rounded-lg transition-all font-medium ${
+                                            userInput.trim() &&
+                                            !selectedTags.includes(userInput.trim())
+                                                ? 'bg-gradient-to-r from-[#71c4ef] to-[#00668c] hover:from-[#00668c] hover:to-[#3b3c3d] text-white transform hover:scale-105'
+                                                : 'bg-[#cccbc8]/50 text-[#313d44]/50 cursor-not-allowed'
+                                        }`}
+                                        data-oid="0f7koxo"
+                                    >
+                                        确定
+                                    </button>
+                                </div>
+                                {userInput.trim() && selectedTags.includes(userInput.trim()) && (
+                                    <p className="text-sm text-[#71c4ef] mt-2" data-oid="v2k4.6c">
+                                        ⚠️ 该标签已存在
+                                    </p>
+                                )}
                             </div>
 
                             <div className="mb-6" data-oid="4ngi_qi">
