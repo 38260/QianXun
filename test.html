@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热点数据分析平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            max-width: 90%;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .platform-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .platform-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .platform-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .platform-count {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .news-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .news-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+            transition: background-color 0.2s ease;
+        }
+
+        .news-item:hover {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-title {
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #2c3e50;
+            margin-right: 15px;
+        }
+
+        .news-hotcount {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        /* 滚动条样式 */
+        .news-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .news-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .news-list::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .news-list::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 10px 15px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔥 热点数据分析平台</h1>
+            <p>实时热点数据，多平台聚合展示</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-number" id="totalNews">-</span>
+                <span class="stat-label">总热点数</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="totalPlatforms">-</span>
+                <span class="stat-label">平台数量</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="dataSource">-</span>
+                <span class="stat-label">数据源</span>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索热点内容或平台...">
+        </div>
+
+        <div id="loading" class="loading">
+            📊 正在加载热点数据...
+        </div>
+
+        <div id="error" class="error hidden">
+            ❌ 数据加载失败，请检查数据文件是否存在
+        </div>
+
+        <div id="platformsContainer" class="platforms-grid hidden">
+        </div>
+    </div>
+
+    <script>
+        let allData = {};
+        let filteredData = {};
+
+        // 获取最新的JSON文件
+        async function getLatestJsonFile() {
+            // 按时间戳排序的文件列表（最新的在前）
+            const possibleFiles = [
+                'backEnd/result/hotNews0723_132310.json',
+                //'backEnd/result/ai_hot_topics_20250706_174908.json',
+                //'../result/hot_topics_20250706_161230.json'
+            ];
+
+            for (const file of possibleFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(`成功加载文件: ${file}`);
+                        return { data, filename: file.split('/').pop() };
+                    }
+                } catch (error) {
+                    console.log(`无法加载文件: ${file}`, error);
+                }
+            }
+            throw new Error('无法找到有效的数据文件');
+        }
+
+        // 加载数据
+        async function loadData() {
+            try {
+                const result = await getLatestJsonFile();
+                allData = result.data;
+                filteredData = { ...allData };
+
+                updateStats(result.filename);
+                renderPlatforms();
+
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('platformsContainer').classList.remove('hidden');
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+            }
+        }
+
+        // 更新统计信息
+        function updateStats(filename) {
+            const totalNews = Object.values(allData).reduce((sum, items) => sum + items.length, 0);
+            const totalPlatforms = Object.keys(allData).length;
+
+            document.getElementById('totalNews').textContent = totalNews.toLocaleString();
+            document.getElementById('totalPlatforms').textContent = totalPlatforms;
+            document.getElementById('dataSource').textContent = filename.replace('.json', '');
+        }
+
+        // 渲染平台数据
+        function renderPlatforms() {
+            const container = document.getElementById('platformsContainer');
+            container.innerHTML = '';
+
+            // 按热点数量排序平台
+            const sortedPlatforms = Object.entries(filteredData)
+                .sort(([, a], [, b]) => b.length - a.length);
+
+            sortedPlatforms.forEach(([platform, items]) => {
+                if (items.length === 0) return;
+
+                const platformCard = document.createElement('div');
+                platformCard.className = 'platform-card';
+
+                // 按热度排序新闻
+                const sortedItems = [...items].sort((a, b) => b.hotcount - a.hotcount);
+
+                platformCard.innerHTML = `
+                    <div class="platform-header">
+                        <div class="platform-name">${platform}</div>
+                        <div class="platform-count">${items.length}</div>
+                    </div>
+                    <div class="news-list">
+                        ${sortedItems.map(item => `
+                            <div class="news-item">
+                                <div class="news-title">${item.title}</div>
+                                <div class="news-hotcount">${item.hotcount}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                container.appendChild(platformCard);
+            });
+        }
+
+        // 搜索功能
+        function filterData(searchTerm) {
+            if (!searchTerm.trim()) {
+                filteredData = { ...allData };
+            } else {
+                filteredData = {};
+                const term = searchTerm.toLowerCase();
+
+                Object.entries(allData).forEach(([platform, items]) => {
+                    // 搜索平台名称或新闻标题
+                    if (platform.toLowerCase().includes(term)) {
+                        filteredData[platform] = items;
+                    } else {
+                        const matchedItems = items.filter(item =>
+                            item.title.toLowerCase().includes(term)
+                        );
+                        if (matchedItems.length > 0) {
+                            filteredData[platform] = matchedItems;
+                        }
+                    }
+                });
+            }
+
+            renderPlatforms();
+        }
+
+        // 搜索事件监听
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            filterData(e.target.value);
+        });
+
+        // 页面加载完成后加载数据
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+
+</html>
